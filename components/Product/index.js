@@ -18,13 +18,24 @@ export default function Product() {
   }
 
   return (
-    <ProductCard>
-      <h2>{data.name}</h2>
-      <p>Description: {data.description}</p>
-      <p>
-        Price: {data.price} {data.currency}
-      </p>
-      <StyledLink href="/">Back to all</StyledLink>
-    </ProductCard>
+    <>
+      <ProductCard>
+        <h2>{data.name}</h2>
+        <p>Description: {data.description}</p>
+        <p>
+          Price: {data.price} {data.currency}
+        </p>
+
+        <StyledLink href="/">Back to all</StyledLink>
+      </ProductCard>
+      {data.reviews &&
+        data.reviews.map((review) => (
+          <section key={review._id}>
+            <h3>{review.title}</h3>
+            <p>{review.text}</p>
+            <p>⭐ {review.rating}</p>
+          </section>
+        ))}
+    </>
   );
 }
